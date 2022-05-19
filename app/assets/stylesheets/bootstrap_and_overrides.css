@@ -1,0 +1,20 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Static version of css will use Glyphicons sprites by default
+  =require twitter-bootstrap-static/sprites
+*/
+
+
+
+.wow-text {
+  color: #FD0003;
+}
+
+.navbar {
+  background-color: #2E2E2E
+}
+
+.bliz-text {
+  color: #096AB3
+}

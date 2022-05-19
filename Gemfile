@@ -59,4 +59,16 @@ gem 'devise'
 
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
-gem 'rbattlenet'
+gem 'blizzard_api'
+gem 'omniauth'
+gem 'omniauth-bnet'
+gem 'jquery-rails'
+gem "figaro"
+gem 'httparty'
+group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'httplog'
+end

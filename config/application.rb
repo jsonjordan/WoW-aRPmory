@@ -21,6 +21,11 @@ module WArp
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
+    # config.active_record.raise_in_transactional_callbacks = true
+    BlizzardApi.configure do |config|
+      config.app_id = ENV['BNET_KEY']
+      config.app_secret = ENV['BNET_SECRET']
+      config.region = 'us'
+    end
   end
 end
