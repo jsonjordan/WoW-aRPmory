@@ -82,12 +82,12 @@ end
 # access_token=US5b900xevzI30h1pAe9w3b882pfa5Ukw7
 
 
-https://us.api.blizzard.com/data/wow/media/guild-crest/emblem/141?namespace=static-9.2.0_42277-us
+# https://us.api.blizzard.com/data/wow/media/guild-crest/emblem/141?namespace=static-9.2.0_42277-us
 
 
-HTTParty.get("https://us.api.blizzard.com/data/wow/media/guild-crest/emblem/141?namespace=static-9.2.0_42277-us", :query => {
-    'client_id' => "#{ENV['BNET_KEY']}",
-    'client_secret' => "#{ENV['BNET_SECRET']}",
-    'namespace' => 'profile-us',
-        'locale' => 'en_US',
-    })
+# HTTParty.get("https://us.api.blizzard.com/data/wow/media/guild-crest/emblem/141?namespace=static-9.2.0_42277-us"), :query => {
+#     'client_id' => "#{ENV['BNET_KEY']}",
+#     'client_secret' => "#{ENV['BNET_SECRET']}",
+#     'namespace' => 'profile-us',
+#         'locale' => 'en_US',
+#     })

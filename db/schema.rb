@@ -10,10 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_132845) do
+ActiveRecord::Schema.define(version: 2022_05_19_134536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "character_guild_connections", force: :cascade do |t|
+    t.integer "main_character_id", null: false
+    t.integer "guildie_id", null: false
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.integer "uid"
+    t.string "realm"
+    t.string "klass"
+    t.string "race"
+    t.string "gender"
+    t.string "faction"
+    t.integer "level"
+    t.integer "money"
+    t.integer "health"
+    t.integer "strength"
+    t.integer "intelligence"
+    t.integer "wisdom"
+    t.integer "constitution"
+    t.integer "dexterity"
+    t.integer "charisma"
+    t.integer "armor_class"
+    t.integer "total_deaths"
+    t.string "partner_type"
+    t.integer "partner_id"
+    t.bigint "guild_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["guild_id"], name: "index_characters_on_guild_id"
+    t.index ["uid"], name: "index_characters_on_uid"
+    t.index ["user_id"], name: "index_characters_on_user_id"
+  end
+
+  create_table "guilds", force: :cascade do |t|
+    t.integer "uid"
+    t.string "name"
+    t.string "realm"
+    t.string "crest_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_guilds_on_name"
+    t.index ["uid"], name: "index_guilds_on_uid"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: ""
@@ -34,4 +80,6 @@ ActiveRecord::Schema.define(version: 2022_05_18_132845) do
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
+  add_foreign_key "characters", "guilds"
+  add_foreign_key "characters", "users"
 end
