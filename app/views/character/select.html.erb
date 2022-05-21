@@ -1,0 +1,31 @@
+<h2>
+Select which characters to import.  Current import count: <span> </span> <span class="badge bg-secondary"><%= @active_characters.count %></span>
+</h2>
+
+<table class="table table-hover table-striped table-condensed">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Level</th>
+    <th>Class</th>
+    <th>Realm</th>
+    <th></th>
+  </tr>
+</thead>
+<%= form_tag(character_update_path(current_user.battletag), method: "post", id: "my_sample_form") do %>
+<tbody>
+  <% @inactive_characters.each do |c| %>
+    </tr>
+        <th><%= c.name %></th>
+        <th><%= c.level %></th>
+        <th><%= c.klass %></th>
+        <th><%= c.realm.name %></th>
+        <th class="button-container">
+            <%= check_box_tag 'character_uids[]', c.uid, c.status == 'active' %>
+        </th>
+    </tr>
+  <% end %>
+  </tbody>
+  <% end %>
+</table>
+<input type="submit" value="Submit" form="my_sample_form" class="btn btn-primary" >

@@ -4,6 +4,7 @@ class CreateGuild < ActiveRecord::Migration[6.1]
       t.integer :uid, index: true
       t.string :name, index: true
       t.string :realm
+      t.string :faction
       t.string :crest_url
 
       t.timestamps

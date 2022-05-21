@@ -58,6 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 gem 'twitter-bootstrap-rails'
+gem "bootstrap", "~> 5.0"
 gem 'bootstrap_form'
 gem 'blizzard_api'
 gem 'omniauth'
@@ -65,6 +66,13 @@ gem 'omniauth-bnet'
 gem 'jquery-rails'
 gem "figaro"
 gem 'httparty'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'sidekiq'
+gem "rack-protection"
+gem 'sinatra'
+gem 'with_advisory_lock'
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'

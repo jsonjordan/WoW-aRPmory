@@ -21,6 +21,10 @@ class User < ApplicationRecord
   def display_name
     self.battletag.slice(0...(self.battletag.index('#')))
   end
+
+  def no_hash_battletag
+    self.battletag.slice!('#')
+  end
   
   def self.from_omniauth(auth)
     unless user = User.find_by(provider: auth.provider, uid: auth.uid)
@@ -37,20 +41,6 @@ class User < ApplicationRecord
     user
   end
 
-  def get_characters
-    profile = BlizzardApi::Wow.profile(self.token).get
-    characters = profile[:wow_accounts].first[:characters]
-    characters.each do |char_info|
-      unless char = Character.find_by(uid: char_info[:id])
-        char = Character.new()
-      end
-      char.uid = char_info[:id]
-      char.name = char_info[:name]
-      char.realm = char_info[:realm][:name][:en_US]
-      char.user = self
-      char.save!
-    end
-  end
 end
 
 # {:character=>{:href=>"https://us.api.blizzard.com/profile/wow/character/scarlet-crusade/scarnn?namespace=profile-us"},

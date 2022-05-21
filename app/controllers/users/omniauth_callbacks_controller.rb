@@ -5,10 +5,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
         if @user
             sign_in @user
-            @user.get_characters
+            Character.get_user_characters(@user)
 
             set_flash_message(:notice, :success, kind: "BNET") if is_navigational_format?
-            redirect_to root_path # TODO change
+            redirect_to character_select_path(@user.no_hash_battletag) # TODO change
         else
             flash[:error] = "Could not be logged in, try again"
             redirect_to root_path

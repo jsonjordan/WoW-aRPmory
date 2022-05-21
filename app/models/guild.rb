@@ -5,4 +5,8 @@ class Guild < ApplicationRecord
 
     has_many :characters
 
+    def active_guildies
+        self.characters.where(status: 'active')
+    end
+
 end
