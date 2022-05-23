@@ -11,4 +11,15 @@ class ApplicationController < ActionController::Base
     redirect_back fallback_location: character_select_path(current_user.no_hash_battletag), 
       notice: 'Random error, please try again!'
   end
+
+  def bulk_push
+    begin
+      User.send_bulk_notifications(params[:message])
+      redirect_to admin_notification_path, notice: "Insufficient rights!"
+    rescue
+      redirect_to admin_notification_path, alert: "Error"
+    end
+  
+  end
+  
 end
