@@ -73,6 +73,10 @@ gem 'sidekiq'
 gem "rack-protection"
 gem 'sinatra'
 gem 'with_advisory_lock'
+gem 'carrierwave', '~> 2.0'
+gem "mini_magick"
+gem 'rmagick'
+gem 'fog-aws'
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'

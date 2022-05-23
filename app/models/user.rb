@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def no_hash_battletag
-    self.battletag.slice!('#')
+    self.battletag.gsub("#","")
   end
   
   def self.from_omniauth(auth)

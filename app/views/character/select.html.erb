@@ -12,7 +12,7 @@ Select which characters to import.  Current import count: <span> </span> <span c
     <th></th>
   </tr>
 </thead>
-<%= form_tag(character_update_path(current_user.battletag), method: "post", id: "my_sample_form") do %>
+<%= form_tag(character_update_path(current_user.no_hash_battletag), method: "post", id: "my_sample_form") do %>
 <tbody>
   <% @inactive_characters.each do |c| %>
     </tr>

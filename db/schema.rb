@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_19_195357) do
+ActiveRecord::Schema.define(version: 2022_05_21_191429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "character_images", force: :cascade do |t|
+    t.string "catagory"
+    t.string "url"
+    t.string "status"
+    t.bigint "character_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "inset"
+    t.string "avatar"
+    t.string "main"
+    t.string "main_raw"
+    t.index ["catagory"], name: "index_character_images_on_catagory"
+    t.index ["character_id"], name: "index_character_images_on_character_id"
+    t.index ["status"], name: "index_character_images_on_status"
+  end
 
   create_table "characters", force: :cascade do |t|
     t.integer "uid"
@@ -89,6 +105,7 @@ ActiveRecord::Schema.define(version: 2022_05_19_195357) do
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
+  add_foreign_key "character_images", "characters"
   add_foreign_key "characters", "guilds"
   add_foreign_key "characters", "realms"
   add_foreign_key "characters", "users"

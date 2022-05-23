@@ -27,5 +27,9 @@ module WArp
       config.app_secret = ENV['BNET_SECRET']
       config.region = 'us'
     end
+
+    config.before_configuration do
+      require 'carrierwave'
+    end
   end
 end

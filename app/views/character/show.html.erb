@@ -1,0 +1,44 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div> <!--padding-->
+        <ul>
+        </ul>
+      </div>
+      <img src="<%= @character.main_raw_image_url %>" height="400" width="275"/>
+      <div> <!--padding-->
+        <ul>
+        </ul>
+      </div>
+      <div class="button-container">
+        <div>
+          <% if @character.title.start_with?('of') || @character.title.start_with?(', ') %>
+            <%= @character.name %> <%= @character.title %>
+          <% else %>
+            <%= @character.title %> <%= @character.name %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <h3>Lvl <%= @character.level %> <%= @character.spec %> <%= @character.klass %></h3>
+      <h4><%= @character.gender %> <%= @character.race %> in the <%=@character.faction %></h4>
+      <h4>Character Stats:</h4>
+      <ul>
+        <li>Current Hit Points: <%= @character.health %></li>
+        <li>Armor Class: <%= @character.armor_class %></li>
+        <li>Strength: <%= @character.strength %></li>
+        <li>Dexterity: <%= @character.dexterity %></li>
+        <li>Constitution: <%= @character.constitution %></li>
+        <li>Intelligence: <%= @character.intelligence %></li>
+        <li>Wisdom: <%= @character.wisdom %></li>
+        <li>Charisma: <%= @character.charisma %></li>
+      </ul>
+      <ul>
+        <li>You have <%= @character.money %> cps</li>
+        <li>You have died <%= @character.total_deaths %> times</li>
+      </ul>
+    </div>
+  </div>
+</div>

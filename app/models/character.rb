@@ -7,10 +7,31 @@ class Character < ApplicationRecord
     belongs_to :user
     belongs_to :realm
 
+    has_many :character_images
     has_many :guild_members, :through => :guild, source: :characters
 
     def guildies
         self.guild_members.where(status: 'active').where.not(id: self.id)
+    end
+
+    def inset_image_url
+        if self.character_images.where(catagory: 'inset').where(status: 'active')&.first&.url
+            self.character_images.where(catagory: 'inset').where(status: 'active').first.url
+        else
+            '/inset_image_unavailable.png'
+        end
+    end
+
+    def avatar_image_url
+        self.character_images.where(catagory: 'avatar').where(status: 'active').first.url
+    end
+
+    def main_image_url
+        self.character_images.where(catagory: 'main').where(status: 'active').first.url
+    end
+
+    def main_raw_image_url
+        self.character_images.where(catagory: 'main-raw').where(status: 'active').first.url
     end
 
     def self.get_user_characters(user)
@@ -42,11 +63,20 @@ class Character < ApplicationRecord
         end
     end
 
+    def initialize_with_deep_update
+        UpdateCharacterProfileWorker.perform_async(self.uid)
+        UpdateCharacterStatsWorker.perform_async(self.uid)
+        UpdateProtectedStatsWorker.perform_async(self.uid)
+        InitializeCharacterImageWorker.perform_async(self.uid)
+    end
+
     def deep_update
         UpdateCharacterProfileWorker.perform_async(self.uid)
         UpdateCharacterStatsWorker.perform_async(self.uid)
         UpdateProtectedStatsWorker.perform_async(self.uid)
+        UpdateCharacterImageWorker.perform_async(self.uid)
     end
+    
 
     # def get_protected_character_info
     #     resp = HTTParty.get("https://us.api.blizzard.com/profile/user/wow/protected-character/#{self.realm.uid}-#{self.uid}", :query => {
