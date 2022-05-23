@@ -63,9 +63,10 @@
             <% money_hash = @character.converted_money.deep_symbolize_keys %>
             <li>You have <%= money_hash[:gold] %> <span class='gold-coin'></span> <%= money_hash[:silver] %> <span class='silver-coin'></span> <%= money_hash[:copper] %> <span class='copper-coin'></span></li>
             <li>You have died <%= @character.total_deaths %> times <%= image_tag("RIP.png") %></li>
-            <li>Your favored pet: Comming Soon &#8482</li>
-            <li>Your favored mount: Comming Soon &#8482</li>
-            <li>Your partner: Comming Soon &#8482</li>
+            <li>Your favored pet: Coming Soon &#8482</li>
+            <li>Your favored mount: Coming Soon &#8482</li>
+            <li>Your partner: Coming Soon &#8482</li>
+            <li>Character Bio: Coming Soon &#8482</li>
           </ul>
         </div>
         <div class="col-lg-6">
@@ -73,8 +74,8 @@
           <ul>
             <li>Name: <%= @character.guild.name %></li>
             <li>Member Count:  <%= (@character.guildies.count + 1) %></li>
-            <li>Unique Member Count: Comming Soon &#8482</li>
-            <li>Logo: Comming Soon &#8482</li>
+            <li>Unique Member Count: Coming Soon &#8482</li>
+            <li>Logo: Coming Soon &#8482</li>
           </ul>
         </div>
       </div>
