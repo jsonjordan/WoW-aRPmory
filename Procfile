@@ -1,2 +1,2 @@
-worker: bundle exec sidekiq -e production -C config/sidekiq.yml
+worker: bundle exec sidekiq
 release: bundle exec rake db:migrate
