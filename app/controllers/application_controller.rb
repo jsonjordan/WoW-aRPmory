@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from ActionController::InvalidAuthenticityToken, 
-  with: :handle_invalid_token
+    with: :handle_invalid_token
 
 
   def handle_invalid_token
     redirect_back fallback_location: character_select_path(current_user.no_hash_battletag), 
-      notice: 'Random error, please try again!'
+      alert: 'Known bug, please try selecting your characters again.'
   end
 
   def bulk_push
