@@ -8,7 +8,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             Character.get_user_characters(@user)
 
             set_flash_message(:notice, :success, kind: "BNET") if is_navigational_format?
-            redirect_to character_select_path(@user.no_hash_battletag)
+            if @user.characters.where(status: 'active').empty?
+                redirect_to character_select_path(@user.no_hash_battletag)
+            else
+                redirect_to user_character_index_path(@user.no_hash_battletag)
+            end
         else
             flash[:error] = "Could not be logged in, try again"
             redirect_to root_path
