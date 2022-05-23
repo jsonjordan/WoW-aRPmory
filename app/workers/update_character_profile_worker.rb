@@ -15,6 +15,8 @@ class UpdateCharacterProfileWorker
 
     if character_profile_info[:guild]
       char.guild = add_guild(character_profile_info[:guild])
+    else
+      char.guild = Guild.find_by(uid: 0)
     end
 
     char.save!

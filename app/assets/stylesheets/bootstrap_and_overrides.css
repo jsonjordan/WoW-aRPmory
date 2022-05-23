@@ -13,10 +13,74 @@
   color: #FD0003;
 }
 
-.navbar {
-  background-color: #2E2E2E
+.horde-bg {
+  background-color: #2E2E2E !important;
+}
+
+.bg-dark {
+  background-color: #2E2E2E !important;
 }
 
 .bliz-text {
-  color: #096AB3
+  color: #00B5FF !important;
+}
+
+footer {
+  text-align: center;
+  background-color: #2E2E2E !important;
+  color: white;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.center-image-2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.form-check-input:checked {
+  background-color: #FD0003;
+  border-color: grey;
+}
+
+.form-switch .form-check-input {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='red'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='grey'/%3e%3c/svg%3e");
+}
+
+.gold-coin{
+	width: 12px;
+	height: 12px;
+  background-color: #FFD700;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.silver-coin{
+	background: #c0c0c0;
+	width: 12px;
+	height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.copper-coin{
+	background: #B87333;
+	width: 12px;
+	height: 12px;
+  border-radius: 50%;
+  display: inline-block;
 }

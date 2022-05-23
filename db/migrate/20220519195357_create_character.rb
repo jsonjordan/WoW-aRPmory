@@ -11,6 +11,7 @@ class CreateCharacter < ActiveRecord::Migration[6.1]
       t.string :faction
       t.integer :level
       t.bigint :money
+      t.json :converted_money
       t.integer :health
       t.integer :strength
       t.integer :intelligence

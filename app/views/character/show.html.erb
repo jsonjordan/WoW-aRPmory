@@ -1,17 +1,19 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <div> <!--padding-->
         <ul>
         </ul>
       </div>
-      <img src="<%= @character.main_raw_image_url %>" height="400" width="275"/>
+      <div class="center-image">
+        <img src="<%= @character.main_raw_image_url %>"/>
+      </div>
       <div> <!--padding-->
         <ul>
         </ul>
       </div>
-      <div class="button-container">
+      <div class="center-text">
         <div>
           <% if @character.title.start_with?('of') || @character.title.start_with?(', ') %>
             <%= @character.name %> <%= @character.title %>
@@ -21,24 +23,61 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-5">
-      <h3>Lvl <%= @character.level %> <%= @character.spec %> <%= @character.klass %></h3>
-      <h4><%= @character.gender %> <%= @character.race %> in the <%=@character.faction %></h4>
-      <h4>Character Stats:</h4>
-      <ul>
-        <li>Current Hit Points: <%= @character.health %></li>
-        <li>Armor Class: <%= @character.armor_class %></li>
-        <li>Strength: <%= @character.strength %></li>
-        <li>Dexterity: <%= @character.dexterity %></li>
-        <li>Constitution: <%= @character.constitution %></li>
-        <li>Intelligence: <%= @character.intelligence %></li>
-        <li>Wisdom: <%= @character.wisdom %></li>
-        <li>Charisma: <%= @character.charisma %></li>
-      </ul>
-      <ul>
-        <li>You have <%= @character.money %> cps</li>
-        <li>You have died <%= @character.total_deaths %> times</li>
-      </ul>
+    <div class="col-lg-9">
+      <div class="row">
+        <h3>Lvl <%= @character.level %> <%= @character.spec %> <%= @character.klass %></h3>
+        <h4><%= @character.gender %> <%= @character.race %> in the <%=@character.faction %></h4>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <h4>Wow Character Stats:</h4>
+          <ul>
+            <li>Current Hit Points: <%= @character.health %></li>
+            <li>Armor Class: <%= @character.armor_class %></li>
+            <li>Strength: <%= @character.strength %></li>
+            <li>Dexterity: <%= @character.dexterity %></li>
+            <li>Constitution: <%= @character.constitution %></li>
+            <li>Intelligence: <%= @character.intelligence %></li>
+            <li>Wisdom: <%= @character.wisdom %></li>
+            <li>Charisma: <%= @character.charisma %></li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <h4>D&D Adjusted Character Stats:</h4>
+          <ul>
+            <li>Current Hit Points: <%= @character.health %></li>
+            <li>Armor Class: <%= @character.armor_class %></li>
+            <li>Strength: <%= @character.strength %></li>
+            <li>Dexterity: <%= @character.dexterity %></li>
+            <li>Constitution: <%= @character.constitution %></li>
+            <li>Intelligence: <%= @character.intelligence %></li>
+            <li>Wisdom: <%= @character.wisdom %></li>
+            <li>Charisma: <%= @character.charisma %></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <h4>Other Character Stats:</h4>
+          <ul>
+            <% money_hash = @character.converted_money.deep_symbolize_keys %>
+            <li>You have <%= money_hash[:gold] %> <span class='gold-coin'></span> <%= money_hash[:silver] %> <span class='silver-coin'></span> <%= money_hash[:copper] %> <span class='copper-coin'></span></li>
+            <li>You have died <%= @character.total_deaths %> times <%= image_tag("RIP.png") %></li>
+            <li>Your favored pet: Comming Soon &#8482</li>
+            <li>Your favored mount: Comming Soon &#8482</li>
+            <li>Your partner: Comming Soon &#8482</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <h4>Your Adventuring Group:</h4>
+          <ul>
+            <li>Name: <%= @character.guild.name %></li>
+            <li>Member Count:  <%= (@character.guildies.count + 1) %></li>
+            <li>Unique Member Count: Comming Soon &#8482</li>
+            <li>Logo: Comming Soon &#8482</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>

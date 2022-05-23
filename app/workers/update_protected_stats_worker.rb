@@ -7,12 +7,13 @@ class UpdateProtectedStatsWorker
         protected_stats_info = get_character_protected_stats(char)
 
         char.money = protected_stats_info[:money]
+        char.converted_money = char.convert_money
         char.total_deaths = protected_stats_info[:protected_stats][:total_number_deaths]
 
         char.save!
 
     end
-  
+
     def get_character_protected_stats(char)
         resp = HTTParty.get("https://us.api.blizzard.com/profile/user/wow/protected-character/#{char.realm.uid}-#{char.uid}", :query => {
             'namespace' => 'profile-us',
@@ -21,5 +22,5 @@ class UpdateProtectedStatsWorker
         })
         resp.deep_symbolize_keys
     end
-  
-  end
+
+end

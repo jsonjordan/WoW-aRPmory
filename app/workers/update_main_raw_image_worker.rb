@@ -8,7 +8,7 @@ class UpdateMainRawImageWorker
 
         ci.remote_main_raw_url = url
         if ci.save
-            ci.url = ci.main_raw.zoomed.url
+            ci.url = ci.main_raw.trimmed.url
             ci.save!
         end
 

@@ -27,7 +27,7 @@ class CharacterController < ApplicationController
         end
         if user = User.find { |u| u.no_hash_battletag == params[:user_battletag] }
             flash[:notice] = "Characters being added, this may take a moment and you may need to refresh."
-            redirect_to user_index_path(user.no_hash_battletag)
+            redirect_to user_character_index_path(user.no_hash_battletag)
         else
             render :select
         end

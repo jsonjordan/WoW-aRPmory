@@ -34,6 +34,25 @@ class Character < ApplicationRecord
         self.character_images.where(catagory: 'main-raw').where(status: 'active').first.url
     end
 
+    def converted_money_string
+        money_hash = self.converted_money.deep_symbolize_keys
+        "#{money_hash[:gold]}g <img src='public/Gold.png'> #{money_hash[:silver]} <img src='public/Silver.png'> #{money_hash[:copper]} <img src='public/Copper.png'>"
+    end
+
+    def convert_money
+        places = []
+        seperated_money = Hash.new
+        raw_money = self.money
+        until raw_money.zero?
+            raw_money, r = raw_money.divmod(10)
+            places.unshift(r)
+        end
+        seperated_money[:copper] = places.pop(3).join('').to_i
+        seperated_money[:silver] = places.pop(3).join('').to_i
+        seperated_money[:gold] = places.join('').to_i
+        seperated_money
+    end
+
     def self.get_user_characters(user)
         profile = BlizzardApi::Wow.profile(user.token).get
         characters = profile[:wow_accounts].first[:characters]

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2022_05_21_191429) do
     t.string "faction"
     t.integer "level"
     t.bigint "money"
+    t.json "converted_money"
     t.integer "health"
     t.integer "strength"
     t.integer "intelligence"

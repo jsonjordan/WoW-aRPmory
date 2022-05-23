@@ -21,20 +21,42 @@ class MainRawUploader < CarrierWave::Uploader::Base
     "https://s3.amazonaws.com/arpmory/uploads/fallback/" + [version_name, "default.png"].compact.join('_')
   end
 
-  version :zoomed do    
-    process :zoom
+  # version :zoomed do    
+  #   process :zoom
+  # end
+
+  version :trimmed do    
+    process :trim
+    process :resize_to_fit_by_percentage => 0.55
+    # process :resize_to_limit => [232, nil]
   end
 
 private 
 
-def zoom
-  manipulate! do |img|
-      # img.resize 'x900' # resize to 140px high
-      pixels_to_remove = ((img[:width] - 620)/2).round # calculate amount to remove
-      img.shave "#{pixels_to_remove}x150" # shave off the sides
-      img.resize 'x600' # resize to 140px high
+# def zoom
+#   manipulate! do |img|
+#       # img.resize 'x900' # resize to 140px high
+#       pixels_to_remove = ((img[:width] - 620)/2).round # calculate amount to remove
+#       img.shave "#{pixels_to_remove}x150" # shave off the sides
+#       img.resize 'x600' # resize to 140px high
 
-    img # Returned image should be 180x140, cropped from the centre
+#     img # Returned image should be 180x140, cropped from the centre
+#   end
+# end
+
+def resize_to_fit_by_percentage(percentage)
+  resize_to_fit self.width*percentage, nil
+end
+
+def trim
+  manipulate! do |img|
+    test_image = img.clone
+    test_image.trim
+    if test_image.width < img.width || test_image.height < img.height
+      test_image
+    else
+      img
+    end
   end
 end
 

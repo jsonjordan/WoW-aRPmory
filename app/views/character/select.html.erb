@@ -12,7 +12,7 @@ Select which characters to import.  Current import count: <span> </span> <span c
     <th></th>
   </tr>
 </thead>
-<%= form_tag(character_update_path(current_user.no_hash_battletag), method: "post", id: "my_sample_form") do %>
+<%= form_tag(character_update_path(current_user.no_hash_battletag), method: "post", id: "character_switches_form") do %>
 <tbody>
   <% @inactive_characters.each do |c| %>
     </tr>
@@ -21,11 +21,15 @@ Select which characters to import.  Current import count: <span> </span> <span c
         <th><%= c.klass %></th>
         <th><%= c.realm.name %></th>
         <th class="button-container">
-            <%= check_box_tag 'character_uids[]', c.uid, c.status == 'active' %>
+            <div class="form-check form-switch">
+                <%= check_box_tag 'character_uids[]', c.uid, c.status == 'active', {:class => "form-check-input"}  %>
+            </div>
         </th>
     </tr>
   <% end %>
   </tbody>
   <% end %>
 </table>
-<input type="submit" value="Submit" form="my_sample_form" class="btn btn-primary" >
+<input type="submit" value="Submit" form="character_switches_form" class="btn btn-primary" >
+
+
