@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Guild.create(uid: 0, name: 'aRPmory Adventurers', realm: 'aRPmory', faction: 'Both')
+
+# User.create(email: ENV['JJ_EMAIL'], password: ENV['JJ_PW'], uid: 0, battletag: 'aRPmory')
