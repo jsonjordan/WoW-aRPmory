@@ -34,6 +34,42 @@ class Character < ApplicationRecord
         self.character_images.where(catagory: 'main-raw').where(status: 'active').first.url
     end
 
+    def set_active_inset_image(character_image_id)
+        self.character_images.where(catagory: 'inset').update_all(status: 'inactive')
+        if ci = self.character_images.where(catagory: 'inset').find(character_image_id)
+            ci.status = 'active'
+            ci.save!
+        end
+    end
+
+    def set_active_avatar_image(character_image_id)
+        self.character_images.where(catagory: 'avatar').update_all(status: 'inactive')
+        if ci = self.character_images.where(catagory: 'avatar').find_by(character_image_id)
+            ci.status = 'active'
+            ci.save!
+        end
+    end
+
+    def set_active_main_image(character_image_id)
+        self.character_images.where(catagory: 'main').update_all(status: 'inactive')
+        if ci = self.character_images.where(catagory: 'main').find_by(character_image_id)
+            ci.status = 'active'
+            ci.save!
+        end
+    end
+
+    def set_active_main_raw_image(character_image_id)
+        self.character_images.where(catagory: 'main_raw').update_all(status: 'inactive')
+        if ci = self.character_images.where(catagory: 'main_raw').find_by(character_image_id)
+            ci.status = 'active'
+            ci.save!
+        end
+    end
+
+    def save_current_images(types_array)
+        SaveCurrentImagesWorker.perform_async(self.uid, types_array)
+    end
+
     def converted_money_string
         money_hash = self.converted_money.deep_symbolize_keys
         "#{money_hash[:gold]}g <img src='public/Gold.png'> #{money_hash[:silver]} <img src='public/Silver.png'> #{money_hash[:copper]} <img src='public/Copper.png'>"
@@ -96,6 +132,9 @@ class Character < ApplicationRecord
         UpdateCharacterImageWorker.perform_async(self.uid)
     end
     
+
+    # On Character model, add save image methods for each image type (saves todays image for later use). add set methods for each image type (makes given image only active of its type)
+
 
     # def get_protected_character_info
     #     resp = HTTParty.get("https://us.api.blizzard.com/profile/user/wow/protected-character/#{self.realm.uid}-#{self.uid}", :query => {

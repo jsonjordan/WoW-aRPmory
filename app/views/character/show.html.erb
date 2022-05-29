@@ -79,6 +79,14 @@
           </ul>
         </div>
       </div>
+      <div class="row">
+        <div class="col-lg-12 button-container">
+          <p>Manage your character images:</p>
+          <%= button_to("Today's Images", todays_images_path(@character.user.no_hash_battletag, @character.uid), class: 'btn btn-xs btn-info', method: :get) %>
+          <%= button_to("Set Full Character Image", select_body_image_path(@character.user.no_hash_battletag, @character.uid), class: 'btn btn-xs btn-info', method: :get) %>
+          <%= button_to("Set Head Shot Image", todays_images_path(@character.user.no_hash_battletag, @character.uid), class: 'btn btn-xs btn-info', method: :get) %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

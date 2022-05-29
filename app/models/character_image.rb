@@ -2,6 +2,7 @@ class CharacterImage < ApplicationRecord
 
     belongs_to :character
 
+    validates :title, uniqueness: { scope: [:catagory, :character_id] }
     #for carrierwave
     mount_uploader :inset, InsetUploader
     mount_uploader :avatar, AvatarUploader

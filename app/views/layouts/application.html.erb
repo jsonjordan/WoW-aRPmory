@@ -2,6 +2,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+</style> 
   <head>
     <% if notice %>
       <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -38,7 +41,7 @@
 
   <nav class="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><span class="wow-text">aRPmory</span></a>
+    <a class="navbar-brand" href="/"><span class="bliz-text">a</span><span class="finger-paint">RP</span><span class="bliz-text">mory</span></a>
     <div class="float-end" id="navbarNav">
       <ul class="navbar-nav">
         <% if user_signed_in? %>
@@ -91,7 +94,6 @@
             </div>
           <% end %>
         <div class="col py-3 bg-white">
-          <%= bootstrap_flash %>
           <%= yield %>
         </div>
     </div>

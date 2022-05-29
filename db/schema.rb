@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2022_05_21_191429) do
 
   create_table "character_images", force: :cascade do |t|
     t.string "catagory"
+    t.string "title"
     t.string "url"
     t.string "status"
     t.bigint "character_id"
@@ -54,6 +55,10 @@ ActiveRecord::Schema.define(version: 2022_05_21_191429) do
     t.integer "total_deaths"
     t.string "partner_type"
     t.integer "partner_id"
+    t.string "remote_inset_url"
+    t.string "remote_avatar_url"
+    t.string "remote_main_url"
+    t.string "remote_main_raw_url"
     t.string "status"
     t.bigint "guild_id"
     t.bigint "user_id"

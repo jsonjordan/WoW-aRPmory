@@ -23,6 +23,10 @@ class CreateCharacter < ActiveRecord::Migration[6.1]
       t.integer :total_deaths
       t.string :partner_type
       t.integer :partner_id
+      t.string :remote_inset_url
+      t.string :remote_avatar_url
+      t.string :remote_main_url
+      t.string :remote_main_raw_url
       t.string :status, index: true
       t.belongs_to :guild, foreign_key: true, index: true
       t.belongs_to :user, foreign_key: true, index: true

@@ -1,0 +1,50 @@
+<div class="container">
+    <h2 class='center-text'>
+        Todays Images (check the image you would like to save for later use)
+    </h2>
+    
+    <%= form_tag(save_current_images_path(@character.user.no_hash_battletag, @character.uid), method: "post", id: "character_images_form") do %>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="h-85 testing">
+                    <h4 class='center-text'>
+                        Full Character
+                    </h4>
+                    <p>
+                        Note: Saved image will have empty space cropped out and character will be larger.
+                    </p>
+                    <div class="center-image-3">
+                        <img src="<%= @character.remote_main_raw_url %>" class="img-fluid"/>
+                    </div>
+                </div>
+                <div class="h-15 testing d-flex align-items-center justify-content-center">
+                Check me --> 
+                <%= check_box_tag 'image_types[]', 'inset', true, {:class => "big-checkbox form-check-input"}  %>
+                <--- to save
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="h-85 testing">
+                    <h4 class='center-text'>
+                        Head Shot
+                    </h4>
+                    <div>
+                        <img src="<%= @character.remote_inset_url %>" class='img-fluid'/>
+                    </div>
+                </div>
+                <div class="h-15 testing d-flex align-items-center justify-content-center">
+                    Check me --> 
+                        <%= check_box_tag 'image_types[]', 'inset', true, {:class => "big-checkbox form-check-input"}  %>
+                    <--- to save
+                </div>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-lg-12">
+                <%= label_tag  "title", "Title for your character image(s)." %>
+                <%= text_field_tag "title", "", placeholder: "Image Title", class: "form-control", :required => true %>
+            </div>
+        </div>
+    <% end %>
+    <input type="submit" value="Save!" form="character_images_form" class="btn btn-danger" >
+</div>

@@ -22,7 +22,7 @@ Select which characters to import.  Current import count: <span> </span> <span c
         <th><%= c.realm.name %></th>
         <th class="button-container">
             <div class="form-check form-switch">
-                <%= check_box_tag 'character_uids[]', c.uid, c.status == 'active', {:class => "form-check-input"}  %>
+                <%= check_box_tag 'character_uids[]', c.uid, c.status == 'active', {:class => "form-slide-input"}  %>
             </div>
         </th>
     </tr>
@@ -30,6 +30,6 @@ Select which characters to import.  Current import count: <span> </span> <span c
   </tbody>
   <% end %>
 </table>
-<input type="submit" value="Submit" form="character_switches_form" class="btn btn-primary" >
+<input type="submit" value="Import" form="character_switches_form" class="btn btn-primary" >
 
 

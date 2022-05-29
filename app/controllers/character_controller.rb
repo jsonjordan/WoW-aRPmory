@@ -49,4 +49,25 @@ class CharacterController < ApplicationController
         @character = Character.find_by(uid: params[:character_uid])
     end
 
+    def todays_images
+        @character = Character.find_by(uid: params[:character_uid])
+    end
+
+    def save_current_images
+        char_uid = params[:character_uid]
+        types_array = []
+        params[:image_types].each do |type|
+            type_hash = Hash.new
+            type_hash[:catagory] = type
+            type_hash[:title] = params[:title]
+            types_array.push(type_hash)
+        end
+
+        char = Character.find_by(uid: char_uid.to_i)
+        char.save_current_images(types_array)
+
+        flash[:notice] = "Images being added, this may take a moment and you may need to refresh."
+        redirect_to user_character_index_path(char.user.no_hash_battletag)
+    end
+
 end
